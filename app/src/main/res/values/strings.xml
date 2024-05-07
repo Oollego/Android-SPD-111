@@ -5,7 +5,12 @@
     <string name="main_tv_title">Android</string>
     <string name="main_btn_calc">Calculator</string>
 
-    <!-- CALC ACTIVITY -->
+<!-- region GAME ACTIVITY-->
+    <string name="main_btn_game">Swipe.Game</string>
+<!--endregion-->
+    <!-- region CALC ACTIVITY -->
+    <string name="symbol_sqr">\u221A</string>
+
     <string name="calc_tv_title">Calculator</string>
     <string name="calc_btn_percent">%</string>
     <string name="calc_btn_c">C</string>
@@ -38,5 +43,9 @@
     <string name="calc_btn_plusMinus">\u207A/\u02D7</string>
     <string name="calc_btn_comma">\u002C</string>
     <string name="calc_btn_equal">\u003D</string>
+
+    <string name='calc_limit_exceeded'>Limit exceeded</string>
+    <string name='calc_zero_division'>Division by zero</string>
+    <!-- endregion -->
 
 </resources>

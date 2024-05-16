@@ -7,6 +7,8 @@
 
 <!-- region GAME ACTIVITY-->
     <string name="main_btn_game">Swipe.Game</string>
+    <string name="score_view">Score:</string>
+    <string name="score_view_result">0</string>
 <!--endregion-->
     <!-- region CALC ACTIVITY -->
     <string name="symbol_sqr">\u221A</string>

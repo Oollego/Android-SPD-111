@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -144,8 +146,6 @@ public class GameActivity extends AppCompatActivity {
         snake.addFirst(newHead);
         gameField[newHead.x][newHead.y].setBackgroundColor(snakeColor);
 
-
-
         handler.postDelayed(this::step, snakeSpeed);
     }
     private void deletePill(){
@@ -184,6 +184,8 @@ public class GameActivity extends AppCompatActivity {
 
                 TextView tv = new TextView(this);
                 tv.setBackgroundColor(fieldColor);
+                tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                tv.setGravity(Gravity.CENTER_VERTICAL);
                 //tv.setText("0");
                 tv.setLayoutParams(tvLayoutParams);
                 row.addView(tv);

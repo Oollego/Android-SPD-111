@@ -4,7 +4,11 @@
     <!-- MAIN ACTIVITY -->
     <string name="main_tv_title">Android</string>
     <string name="main_btn_calc">Calculator</string>
+    <string name="main_btn_chat">Net.Chat</string>
 
+    <!-- region CHAT ACTIVITY-->
+    <string name="chat_scroller_description">Chat messages</string>
+    <!--endregion-->
 <!-- region GAME ACTIVITY-->
     <string name="main_btn_game">Swipe.Game</string>
     <string name="score_view">Score:</string>

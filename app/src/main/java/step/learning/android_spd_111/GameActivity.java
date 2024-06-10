@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +30,8 @@ public class GameActivity extends AppCompatActivity {
     private static final int FIELD_HEIGHT = 24;
     private TextView[][] gameField;
     private final LinkedList<Vector2> snake = new LinkedList<>();
-
+    private Animation opacityAnimation;
+    private Animation opacityDisAnimation;
     private final Handler handler = new Handler();
     private final Handler pillHandler = new Handler();
     private int fieldColor;
@@ -53,6 +56,9 @@ public class GameActivity extends AppCompatActivity {
             return insets;
 
         });
+        opacityAnimation = AnimationUtils.loadAnimation(this, R.anim.opacity);
+        opacityAnimation = AnimationUtils.loadAnimation(this, R.anim.opacity_dis);
+        opacityDisAnimation = AnimationUtils.loadAnimation(this, R.anim.opacity_dis);
 
 
         findViewById(R.id.main).setOnTouchListener(new OnSwipeListener(this){
@@ -109,6 +115,8 @@ public class GameActivity extends AppCompatActivity {
                 foodPosition = Vector2.random();
             }while(isCellInSnack(foodPosition));
             gameField[foodPosition.x][foodPosition.y].setText( food );
+            gameField[foodPosition.x][foodPosition.y].startAnimation(opacityAnimation);
+
 
             score++;
             TextView scoreView = findViewById(R.id.textView_Score_result);
@@ -123,6 +131,7 @@ public class GameActivity extends AppCompatActivity {
                     pillPosition = Vector2.random();
                 }while(isCellInSnack(pillPosition) && (!foodPosition.equals(pillPosition)));
                 gameField[pillPosition.x][pillPosition.y].setText( pill );
+                gameField[pillPosition.x][pillPosition.y].startAnimation(opacityDisAnimation);
                 pillHandler.postDelayed(this::deletePill, 10000);
             }
         }

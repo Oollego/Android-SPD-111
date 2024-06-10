@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -51,7 +53,8 @@ public class ChatActivity extends AppCompatActivity {
     private static final String CHAT_URL = "https://chat.momentfor.fun/";
     private final byte[] buffer = new byte[8096];
     ExecutorService executorService = Executors.newSingleThreadExecutor();
-
+    private Animation messageAnim;
+    private Animation btnAnim;
     private EditText etNik;
     private EditText etMessage;
     private ScrollView chatScroller;
@@ -76,7 +79,8 @@ public class ChatActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        messageAnim = AnimationUtils.loadAnimation(this, R.anim.message_anim);
+        btnAnim = AnimationUtils.loadAnimation(this, R.anim.chat_btn_anim);
         updateChat();
 
         urlToImageView(
@@ -132,6 +136,8 @@ public class ChatActivity extends AppCompatActivity {
     private void onSendClick(View v){
         String author = etNik.getText().toString();
         String message = etMessage.getText().toString();
+        ImageView btnSend = findViewById(R.id.btnSend);
+        btnSend.startAnimation(btnAnim);
         if(author.isEmpty()){
             Toast.makeText(this, "Enter 'Nik''", Toast.LENGTH_SHORT).show();
             return;
@@ -282,6 +288,7 @@ public class ChatActivity extends AppCompatActivity {
 
                     if(newMessageSound != null && isSoundOn ) newMessageSound.start();
                 }
+
                 msgContainer.setLayoutParams(textContParams);
 
 
@@ -320,11 +327,13 @@ public class ChatActivity extends AppCompatActivity {
 
                 container.addView(msgContainer);
                 message.setView(msgContainer);
+                msgContainer.startAnimation(messageAnim);
             }
 //           chatScroller.fullScroll(View.FOCUS_DOWN);
             chatScroller.post(
                     ()->chatScroller.fullScroll( View.FOCUS_DOWN )
             );
+
             // runOnUiThread(() -> ((TextView) findViewById(R.id.chat_tv_title)).setText(sb.toString()));
         });
     }

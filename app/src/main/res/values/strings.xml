@@ -5,15 +5,16 @@
     <string name="main_tv_title">Android</string>
     <string name="main_btn_calc">Calculator</string>
     <string name="main_btn_chat">Net.Chat</string>
+    <string name="main_btn_anim">Animation</string>
 
     <!-- region CHAT ACTIVITY-->
     <string name="chat_scroller_description">Chat messages</string>
     <!--endregion-->
-<!-- region GAME ACTIVITY-->
+    <!-- region GAME ACTIVITY-->
     <string name="main_btn_game">Swipe.Game</string>
     <string name="score_view">Score:</string>
     <string name="score_view_result">0</string>
-<!--endregion-->
+    <!--endregion-->
     <!-- region CALC ACTIVITY -->
     <string name="symbol_sqr">\u221A</string>
 
@@ -54,4 +55,13 @@
     <string name='calc_zero_division'>Division by zero</string>
     <!-- endregion -->
 
+    <!-- region ANIM ACTIVITY -->
+    <string name="anim_title">Animations</string>
+    <string name="anim_opacity_title">Opacity</string>
+    <string name="anim_size_title">Size</string>
+    <string name="anim_arc_title">Rotate</string>
+    <string name="anim_move_title">Move</string>
+    <string name="anim_combo_title">Combo</string>
+
+    <!--endregion-->
 </resources>

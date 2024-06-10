@@ -3,6 +3,9 @@ package step.learning.android_spd_111;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +19,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class CalcActivity extends AppCompatActivity {
     private TextView tvHistory;
+    private Animation btnAnim;
+    private Animation opacityAnim;
+    private AnimationSet comboAnimation;
     private TextView tvResult;
     private String operationBuffer;
     private String historyFuncBuffer;
@@ -63,7 +69,11 @@ public class CalcActivity extends AppCompatActivity {
         findViewById(R.id.calc_btn_add).setOnClickListener(this::onAddClick);
         findViewById(R.id.calc_btn_comma).setOnClickListener(this::onCommaClick);
 
-
+        btnAnim = AnimationUtils.loadAnimation(this, R.anim.calc);
+        opacityAnim = AnimationUtils.loadAnimation(this, R.anim.opacity_btn_calk);
+        comboAnimation = new AnimationSet(false);
+        comboAnimation.addAnimation(btnAnim);
+        comboAnimation.addAnimation(opacityAnim);
         findViewById(R.id.calc_lay_result).setOnTouchListener(new OnSwipeListener(this){
             public void onSwipeRight(){
                 onBackspaceClick(findViewById(R.id.calc_lay_result));
@@ -82,7 +92,9 @@ public class CalcActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         tvResult.setText( savedInstanceState.getCharSequence("tvResult") );
     }
+
     private void onDigitButtonClick(View view){
+        view.startAnimation(comboAnimation);
         String result = "";
         if(!isOperation){
             result = tvResult.getText().toString();
@@ -99,6 +111,7 @@ public class CalcActivity extends AppCompatActivity {
         isOperation = false;
     }
     private void onInverseClick(View view){
+        view.startAnimation(comboAnimation);
         String result = tvResult.getText().toString();
         double x = Double.parseDouble(result);
         if( x == 0){
@@ -131,7 +144,7 @@ public class CalcActivity extends AppCompatActivity {
         tvHistory.setText(histStr);
     }
     private void onSignClick(View view){
-
+        view.startAnimation(comboAnimation);
         String result = tvResult.getText().toString();
         if(result.equals("0")) return;
 
@@ -141,7 +154,7 @@ public class CalcActivity extends AppCompatActivity {
         tvResult.setText( str );
     }
     private void onSqrtClick(View view){
-
+        view.startAnimation(comboAnimation);
         String result = tvResult.getText().toString();
 
         if(result.equals("0")) return;
@@ -172,7 +185,7 @@ public class CalcActivity extends AppCompatActivity {
         tvHistory.setText(histStr);
     }
     private void onSquareClick(View view){
-
+        view.startAnimation(comboAnimation);
         String result = tvResult.getText().toString();
 
         if(result.equals("0")) return;
@@ -207,6 +220,7 @@ public class CalcActivity extends AppCompatActivity {
 
     }
     private void onBackspaceClick(View view){
+        view.startAnimation(comboAnimation);
         String tvResultStr = tvResult.getText().toString();
         if(tvResultStr.equals("0")){
             return;
@@ -220,6 +234,7 @@ public class CalcActivity extends AppCompatActivity {
 
     }
     private void onClearClick(View view){
+        view.startAnimation(comboAnimation);
         tvResult.setText("0");
         tvHistory.setText("");
         operationBuffer = null;
@@ -228,6 +243,7 @@ public class CalcActivity extends AppCompatActivity {
         operation = '0';
     }
     private void onClearEntryClick(View view){
+        view.startAnimation(comboAnimation);
         tvResult.setText("0");
         tvHistory.setText(historyBuffer);
         historyFuncBuffer = null;
@@ -235,6 +251,7 @@ public class CalcActivity extends AppCompatActivity {
 
     private void onMultiplyClick(View view){
         String result = tvResult.getText().toString();
+        view.startAnimation(comboAnimation);
 
         if(!isOperation && operationBuffer != null){
             double x = Double.parseDouble(result) * Double.parseDouble(operationBuffer) ;
@@ -251,6 +268,7 @@ public class CalcActivity extends AppCompatActivity {
     }
     private void onDivideClick(View view){
         String result = tvResult.getText().toString();
+        view.startAnimation(comboAnimation);
 
         if(!isOperation && operationBuffer != null){
             double x;
@@ -275,6 +293,7 @@ public class CalcActivity extends AppCompatActivity {
     }
     private void onAddClick(View view){
         String result = tvResult.getText().toString();
+        view.startAnimation(comboAnimation);
 
         if(!isOperation && operationBuffer != null){
             double x = Double.parseDouble(result) + Double.parseDouble(operationBuffer) ;
@@ -291,6 +310,7 @@ public class CalcActivity extends AppCompatActivity {
         tvResult.setText(result);
     }
     private void onSubtractClick(View view){
+        view.startAnimation(comboAnimation);
 
         String result = tvResult.getText().toString();
         String resultTemp;
@@ -310,6 +330,8 @@ public class CalcActivity extends AppCompatActivity {
     }
     private void onEqualsClick(View view){
         String result;
+        view.startAnimation(comboAnimation);
+
         switch(operation){
             case '×':
                 result = tvResult.getText().toString();
@@ -372,6 +394,8 @@ public class CalcActivity extends AppCompatActivity {
         }
     }
     private void onPercentClick(View view){
+        view.startAnimation(comboAnimation);
+
         if(operationBuffer != null){
             String result = tvResult.getText().toString();
             double x = Double.parseDouble(result) / 100;
@@ -386,6 +410,7 @@ public class CalcActivity extends AppCompatActivity {
         }
     }
     private void onCommaClick(View view){
+        view.startAnimation(comboAnimation);
         String result = tvResult.getText().toString();
         if(result.indexOf('.') == -1){
             String commaStr = result + ".";

@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.50" />
+        app:layout_constraintVertical_bias="0.2" />
 
     <Button
         android:id="@+id/main_btn_game"
@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.4" />
 
     <Button
         android:id="@+id/main_btn_chat"
@@ -69,15 +69,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.75" />
-
-    <ImageButton
-        android:id="@+id/imageButton"
+        app:layout_constraintVertical_bias="0.6" />
+    <Button
+        android:id="@+id/main_btn_anim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/btn_star_big_off"
+        android:background="@color/main_btn_bg"
+        android:text="@string/main_btn_anim"
+        android:textColor="@color/main_btn_fg"
+        android:textSize="20sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.8" />
 
-        tools:layout_editor_absoluteX="181dp"
-        tools:layout_editor_absoluteY="629dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
